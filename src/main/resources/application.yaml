@@ -16,3 +16,8 @@ spring:
       enabled: true
       baseline-on-migrate: true
       locations: classpath:db/migration
+telegram:
+  bots:
+    bot:
+      username: cLLyka_really_bot
+      token: 8248269233:AAGoDeG0X0go0VWDevsOPHmIkawzQXlvHDg
