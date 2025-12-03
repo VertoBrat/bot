@@ -16,20 +16,17 @@ public class TopicService {
     private final TopicRepository topicRepository;
     private final MessageRepository messageRepository;
 
-    public Topic createTopic(String name) {
-        Topic topic = new Topic(name);
+    public Topic createTopic(Topic topic) {
         return topicRepository.save(topic);
     }
 
-    public Topic addMessage(Long topicId, String content) {
+    public Topic addMessage(Long topicId, Message message) {
         Topic topic = topicRepository.findById(topicId).orElseThrow();
 
-        Message msg = new Message(content);
-        msg.setTopic(topic);
+        message.setTopic(topic);
+        topic.getMessages().add(message);
 
-        topic.getMessages().add(msg);
-
-        messageRepository.save(msg);
+        messageRepository.save(message);
         return topicRepository.save(topic);
     }
 
