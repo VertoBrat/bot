@@ -2,6 +2,7 @@ package com.botable.Bot.telegram;
 
 import com.botable.Bot.config.TelegramBotProperties;
 import com.botable.Bot.service.BotService;
+import com.botable.Bot.utils.BotUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -18,6 +19,8 @@ public class CrazyBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (!update.hasMessage() || !update.getMessage().hasText()) return;
+
+        BotUtils.sleep(600);
 
         String text = update.getMessage().getText();
         Long chatId = update.getMessage().getChatId();
