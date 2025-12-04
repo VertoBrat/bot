@@ -6,6 +6,7 @@ import com.botable.Bot.repository.MessageRepository;
 import com.botable.Bot.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,14 +21,12 @@ public class TopicService {
         return topicRepository.save(topic);
     }
 
+    @Transactional
     public Topic addMessage(Long topicId, Message message) {
         Topic topic = topicRepository.findById(topicId).orElseThrow();
-
-        message.setTopic(topic);
         topic.getMessages().add(message);
-
         messageRepository.save(message);
-        return topicRepository.save(topic);
+        return topic;
     }
 
     public List<Topic> findAll() {

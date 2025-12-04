@@ -18,10 +18,6 @@ public class Message {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id")
-    private Topic topic;
-
     public Message(String content) {
         this.content = content;
     }

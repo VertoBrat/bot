@@ -22,7 +22,12 @@ public class Topic {
     private String name;
 
     // один topic -> много message
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "topic_message",
+            joinColumns = @JoinColumn(name = "topic_id"),
+            inverseJoinColumns = @JoinColumn(name = "message_id")
+    )
     private List<Message> messages = new ArrayList<>();
 
     public Topic(String name) {
@@ -30,7 +35,6 @@ public class Topic {
     }
 
     public void addMessage(Message message) {
-        message.setTopic(this);
         this.messages.add(message);
     }
 }
