@@ -37,7 +37,7 @@ public class CrazyBot extends TelegramLongPollingBot {
                 .ifPresent(answer -> send(chatId, answer));
     }
 
-    @Scheduled(fixedRate = 3600000L)
+    @Scheduled(fixedRate = 36000000L)
     private void sendScheduled() {
         LocalDateTime now = LocalDateTime.now();
         long diff = now.until(botService.getLastCommentDate(), ChronoUnit.MINUTES);
