@@ -42,7 +42,7 @@ public class CrazyBot extends TelegramLongPollingBot {
         LocalDateTime now = LocalDateTime.now();
         long diff = now.until(botService.getLastCommentDate(), ChronoUnit.MINUTES);
         if (diff < -60) {
-            send(botService.getChartId(), "Мож попиздим, а?");
+            send(botService.getChartId(), "Зае.... поднимаю чат");
         }
     }
 
